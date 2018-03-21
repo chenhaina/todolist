@@ -52,19 +52,24 @@ const webpackConfig = merge(baseWebpackConfig, {
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
-      filename: config.build.index,
-      template: 'index.html',
-      inject: true,
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeAttributeQuotes: true
-        // more options:
-        // https://github.com/kangax/html-minifier#options-quick-reference
-      },
-      // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-      chunksSortMode: 'dependency'
-    }),
+          template: './index.tpl.html',
+          inject: 'body',
+          filename: '../index.html',         
+        }),
+//  new HtmlWebpackPlugin({
+//    filename: config.build.index,
+//    template: 'index.html',
+//    inject: true,
+//    minify: {
+//      removeComments: true,
+//      collapseWhitespace: true,
+//      removeAttributeQuotes: true
+//      // more options:
+//      // https://github.com/kangax/html-minifier#options-quick-reference
+//    },
+//    // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+//    chunksSortMode: 'dependency'
+//  }),
     // keep module.id stable when vender modules does not change
     new webpack.HashedModuleIdsPlugin(),
     // split vendor js into its own file

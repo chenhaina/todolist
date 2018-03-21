@@ -34,9 +34,13 @@ module.exports = {
         options: vueLoaderConfig
       },
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        test:/\.js$/,
+	    	exclude:/node_module/,
+	    	loader:"babel-loader",
+	    	options:{
+	    		presets:['es2015']
+	    	},
+	    	include: [resolve('src'), resolve('test')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

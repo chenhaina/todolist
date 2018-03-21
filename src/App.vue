@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import Store from '../store'
+import Store from './store.js'
 
 export default {
   data: function(){
   	return {
   		title:'this is a todo list',
-  		items:Store.fetch(),
+  		items:(Store.fetch()===null?new Array():Store.fetch()),
   		liclass:'this is liclass',
   		newItem:''
   		
@@ -28,11 +28,12 @@ export default {
   			item.isFinished=!item.isFinished
   	},
   	addNew:function(){
+      console.log(this.items)
   		this.items.push({
   			label:this.newItem,
   			isFinished:false
   		})
-  		this.newItem = ' '
+  		this.newItem = ' ';
 //		this.item.label=thisNewitem
 //		this.item.isFinished=false;
   	}
@@ -41,8 +42,8 @@ export default {
   	items:{
   		handler:function(items){
   			Store.save(items)
-  		},
-  		deep:true
+  		}
+  		
   	}
   }
 }
@@ -54,7 +55,7 @@ export default {
 		cursor: pointer;
 	}
 .finish{
-		text-decoration: underline;
+		text-decoration: line-through;
 	}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
